@@ -1,0 +1,12 @@
+# exchange_rate_checker.py
+
+import requests
+
+def get_exchange_rate(from_currency, to_currency):
+    url = f"https://api.exchangerate-api.com/v4/latest/{from_currency}"
+    response = requests.get(url)
+    rates = response.json().get("rates", {})
+    return rates.get(to_currency, "Currency not found")
+
+# Sample usage
+print(f"1 USD to EUR: {get_exchange_rate('USD', 'EUR')}")
